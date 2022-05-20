@@ -1,0 +1,6 @@
+FileVersion = 1
+
+[Project]
+Name = "SPRIV-Cross"
+TargetType = "BeefLib"
+StartupObject = "SPRIV_Cross.Program"
