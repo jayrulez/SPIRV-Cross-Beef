@@ -1,8 +1,5 @@
 FileVersion = 1
-Projects = {SPRIV-Cross = {Path = "SPRIV-Cross"}}
+Projects = {SPIRV-Cross = {Path = "SPIRV-Cross"}, "SPIRV-Cross.Test" = {Path = "SPIRV-Cross.Test"}}
 
-[Configs.Test.Win32]
-ConfigSelections = {corlib = {Config = "Debug"}}
-
-[Configs.Test.Win64]
-ConfigSelections = {corlib = {Config = "Debug"}}
+[Workspace]
+StartupProject = "SPIRV-Cross.Test"
