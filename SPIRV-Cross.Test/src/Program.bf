@@ -39,7 +39,7 @@ namespace SPIRV_Cross.Test
 				Runtime.FatalError();
 			}
 			else
-				Console.WriteLine("Expected error hit: {0}.\n", scope String(error));
+				Console.WriteLine("Expected error hit: {0}\n", scope String(error));
 		}
 
 		private static void dump_resource_list(spvc_compiler compiler, spvc_resources resources, spvc_resource_type type, in StringView tag)
