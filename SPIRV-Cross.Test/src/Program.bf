@@ -19,10 +19,10 @@ namespace SPIRV_Cross.Test
 			}
 		}
 
-		private static mixin SPVC_CHECKED_CALL_NEGATIVE(spvc_result result)
+		private static mixin SPVC_CHECKED_CALL_NEGATIVE(delegate spvc_result() result)
 		{
 			g_fail_on_error = false;
-			if (result == .SPVC_SUCCESS)
+			if (result() == .SPVC_SUCCESS)
 			{
 				Console.WriteLine($"Failed: {result}");
 				return 1;
@@ -103,24 +103,8 @@ namespace SPIRV_Cross.Test
 
 			Console.WriteLine($"Revision: {scope String(rev)}");
 
-			//if (args.Count != 5)
-			//	return 1;
-
-			/*FileStream fs = scope FileStream();
-			if(fs.Open(args[1], .Read) case .Err){
+			if (args.Count != 4)
 				return 1;
-			}
-
-			if(case fs.TryRead(scope List<uint8>()) .Ok(let x)){
-
-			}*/
-
-			/*var enumerator = Directory.EnumerateFiles("./");
-
-			repeat{
-				Console.WriteLine(enumerator.Current.GetFileName(.. scope String()));
-			}
-			while(enumerator.MoveNext());*/
 
 			var data = File.ReadAll(args[0], .. scope List<uint8>());
 			word_count = (.)data.Count / sizeof(SpvId);
@@ -187,7 +171,9 @@ namespace SPIRV_Cross.Test
 			SPVC_CHECKED_CALL!(spvc_compiler_install_compiler_options(compiler_msl, options), 1);
 			SPVC_CHECKED_CALL!(spvc_compiler_create_compiler_options(compiler_hlsl, &options), 1);
 			SPVC_CHECKED_CALL!(spvc_compiler_options_set_uint(options, .HlslShaderModel, 50), 1);
-			SPVC_CHECKED_CALL_NEGATIVE!(spvc_compiler_options_set_uint(options, .MslPlatform, 1));
+
+			delegate spvc_result() dlg = scope () => spvc_compiler_options_set_uint(options, .MslPlatform, 1);
+			SPVC_CHECKED_CALL_NEGATIVE!(dlg);
 			SPVC_CHECKED_CALL!(spvc_compiler_install_compiler_options(compiler_hlsl, options), 1);
 			SPVC_CHECKED_CALL!(spvc_compiler_create_compiler_options(compiler_glsl, &options), 1);
 			SPVC_CHECKED_CALL!(spvc_compiler_install_compiler_options(compiler_glsl, options), 1);
@@ -201,7 +187,6 @@ namespace SPIRV_Cross.Test
 			compile(compiler_cpp, "CPP");
 
 			spvc_context_destroy(context);
-			//free(buffer);
 
 			Console.Read();
 			return 0;
