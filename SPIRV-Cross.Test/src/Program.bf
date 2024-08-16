@@ -95,7 +95,7 @@ namespace SPIRV_Cross.Test
 			spvc_compiler_options options = .Null;
 			spvc_resources resources = .Null;
 			SpvId* buffer = null;
-			uint64 word_count = 0;
+			uint word_count = 0;
 
 			rev = spvc_get_commit_revision_and_timestamp();
 			if (rev == null || *rev == '\0')
@@ -178,6 +178,19 @@ namespace SPIRV_Cross.Test
 			SPVC_CHECKED_CALL!(spvc_compiler_create_compiler_options(compiler_glsl, &options), 1);
 			SPVC_CHECKED_CALL!(spvc_compiler_install_compiler_options(compiler_glsl, options), 1);
 
+			const uint32 NUM_EXTS = 2;
+			char8*[NUM_EXTS] expected_exts = .(
+				"EXT_first",
+				"EXT_second"
+				);
+
+			uint32 ext_idx = 0;
+			while (ext_idx < NUM_EXTS)
+			{
+				SPVC_CHECKED_CALL!(spvc_compiler_require_extension(compiler_glsl, expected_exts[ext_idx]), 1);
+				ext_idx += 1;
+			}
+
 			SPVC_CHECKED_CALL!(spvc_compiler_create_shader_resources(compiler_none, &resources), 1);
 			dump_resources(compiler_none, resources);
 			compile(compiler_glsl, "GLSL");
@@ -185,6 +198,25 @@ namespace SPIRV_Cross.Test
 			compile(compiler_msl, "MSL");
 			compile(compiler_json, "JSON");
 			compile(compiler_cpp, "CPP");
+
+			uint num_exts = spvc_compiler_get_num_required_extensions(compiler_glsl);
+			if (num_exts != NUM_EXTS)
+			{
+				Console.WriteLine("num_exts mismatch!");
+				return 1;
+			}
+
+			ext_idx = 0;
+			while (ext_idx < num_exts)
+			{
+				char8* ext = spvc_compiler_get_required_extension(compiler_glsl, ext_idx);
+				if (!String.Equals(ext, expected_exts[ext_idx]))
+				{
+					Console.WriteLine(scope $"extension mismatch ({scope String(ext)} != {scope String(expected_exts[ext_idx])})!");
+					return 1;
+				}
+				ext_idx += 1;
+			}
 
 			spvc_context_destroy(context);
 

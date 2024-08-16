@@ -14,13 +14,13 @@ public class SPIRV
 	public static extern void spvc_msl_vertex_attribute_init(spvc_msl_vertex_attribute* attr);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern void spvc_msl_shader_interface_var_init(spvc_msl_shader_interface_var* var);
+	public static extern void spvc_msl_shader_interface_var_init(spvc_msl_shader_interface_var* @var);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_msl_shader_input_init(spvc_msl_shader_input* input);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern void spvc_msl_shader_interface_var_init_2(spvc_msl_shader_interface_var_2* var);
+	public static extern void spvc_msl_shader_interface_var_init_2(spvc_msl_shader_interface_var_2* @var);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_msl_resource_binding_init(spvc_msl_resource_binding* binding);
@@ -449,10 +449,10 @@ public class SPIRV
 	public static extern void spvc_constant_get_subconstants(spvc_constant constant, uint32* constituents, uint* count);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern  spvc_constant_get_scalar_u64(spvc_constant constant, uint32 column, uint32 row);
+	public static extern uint64 spvc_constant_get_scalar_u64(spvc_constant constant, uint32 column, uint32 row);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern  spvc_constant_get_scalar_i64(spvc_constant constant, uint32 column, uint32 row);
+	public static extern int64 spvc_constant_get_scalar_i64(spvc_constant constant, uint32 column, uint32 row);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern uint32 spvc_constant_get_type(spvc_constant constant);
@@ -473,10 +473,10 @@ public class SPIRV
 	public static extern void spvc_constant_set_scalar_i32(spvc_constant constant, uint32 column, uint32 row, int32 value);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern void spvc_constant_set_scalar_u64(spvc_constant constant, uint32 column, uint32 row,  value);
+	public static extern void spvc_constant_set_scalar_u64(spvc_constant constant, uint32 column, uint32 row, uint64 value);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern void spvc_constant_set_scalar_i64(spvc_constant constant, uint32 column, uint32 row,  value);
+	public static extern void spvc_constant_set_scalar_i64(spvc_constant constant, uint32 column, uint32 row, int64 value);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_constant_set_scalar_u16(spvc_constant constant, uint32 column, uint32 row, uint16 value);
@@ -485,7 +485,7 @@ public class SPIRV
 	public static extern void spvc_constant_set_scalar_i16(spvc_constant constant, uint32 column, uint32 row, int16 value);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern void spvc_constant_set_scalar_u8(spvc_constant constant, uint32 column, uint32 row,  value);
+	public static extern void spvc_constant_set_scalar_u8(spvc_constant constant, uint32 column, uint32 row, uint8 value);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_constant_set_scalar_i8(spvc_constant constant, uint32 column, uint32 row, char8 value);
