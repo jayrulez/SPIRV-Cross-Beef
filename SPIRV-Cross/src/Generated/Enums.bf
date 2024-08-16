@@ -11,6 +11,7 @@ namespace SPIRV_Cross;
 	SpvSourceLanguageOpenCL_CPP = 4,
 	SpvSourceLanguageHLSL = 5,
 	SpvSourceLanguageCPP_for_OpenCL = 6,
+	SpvSourceLanguageSYCL = 7,
 	SpvSourceLanguageMax = 2147483647,
 }
 
@@ -37,6 +38,8 @@ namespace SPIRV_Cross;
 	SpvExecutionModelMissNV = 5317,
 	SpvExecutionModelCallableKHR = 5318,
 	SpvExecutionModelCallableNV = 5318,
+	SpvExecutionModelTaskEXT = 5364,
+	SpvExecutionModelMeshEXT = 5365,
 	SpvExecutionModelMax = 2147483647,
 }
 
@@ -107,11 +110,21 @@ namespace SPIRV_Cross;
 	SpvExecutionModeSignedZeroInfNanPreserve = 4461,
 	SpvExecutionModeRoundingModeRTE = 4462,
 	SpvExecutionModeRoundingModeRTZ = 4463,
+	SpvExecutionModeEarlyAndLateFragmentTestsAMD = 5017,
 	SpvExecutionModeStencilRefReplacingEXT = 5027,
+	SpvExecutionModeStencilRefUnchangedFrontAMD = 5079,
+	SpvExecutionModeStencilRefGreaterFrontAMD = 5080,
+	SpvExecutionModeStencilRefLessFrontAMD = 5081,
+	SpvExecutionModeStencilRefUnchangedBackAMD = 5082,
+	SpvExecutionModeStencilRefGreaterBackAMD = 5083,
+	SpvExecutionModeStencilRefLessBackAMD = 5084,
+	SpvExecutionModeOutputLinesEXT = 5269,
 	SpvExecutionModeOutputLinesNV = 5269,
+	SpvExecutionModeOutputPrimitivesEXT = 5270,
 	SpvExecutionModeOutputPrimitivesNV = 5270,
 	SpvExecutionModeDerivativeGroupQuadsNV = 5289,
 	SpvExecutionModeDerivativeGroupLinearNV = 5290,
+	SpvExecutionModeOutputTrianglesEXT = 5298,
 	SpvExecutionModeOutputTrianglesNV = 5298,
 	SpvExecutionModePixelInterlockOrderedEXT = 5366,
 	SpvExecutionModePixelInterlockUnorderedEXT = 5367,
@@ -129,6 +142,7 @@ namespace SPIRV_Cross;
 	SpvExecutionModeNoGlobalOffsetINTEL = 5895,
 	SpvExecutionModeNumSIMDWorkitemsINTEL = 5896,
 	SpvExecutionModeSchedulerTargetFmaxMhzINTEL = 5903,
+	SpvExecutionModeNamedBarrierCountINTEL = 6417,
 	SpvExecutionModeMax = 2147483647,
 }
 
@@ -161,6 +175,7 @@ namespace SPIRV_Cross;
 	SpvStorageClassShaderRecordBufferNV = 5343,
 	SpvStorageClassPhysicalStorageBuffer = 5349,
 	SpvStorageClassPhysicalStorageBufferEXT = 5349,
+	SpvStorageClassTaskPayloadWorkgroupEXT = 5402,
 	SpvStorageClassCodeSectionINTEL = 5605,
 	SpvStorageClassDeviceOnlyINTEL = 5936,
 	SpvStorageClassHostOnlyINTEL = 5937,
@@ -453,11 +468,14 @@ namespace SPIRV_Cross;
 	SpvDecorationMaxByteOffsetId = 47,
 	SpvDecorationNoSignedWrap = 4469,
 	SpvDecorationNoUnsignedWrap = 4470,
+	SpvDecorationWeightTextureQCOM = 4487,
+	SpvDecorationBlockMatchTextureQCOM = 4488,
 	SpvDecorationExplicitInterpAMD = 4999,
 	SpvDecorationOverrideCoverageNV = 5248,
 	SpvDecorationPassthroughNV = 5250,
 	SpvDecorationViewportRelativeNV = 5252,
 	SpvDecorationSecondaryViewportRelativeNV = 5256,
+	SpvDecorationPerPrimitiveEXT = 5271,
 	SpvDecorationPerPrimitiveNV = 5271,
 	SpvDecorationPerViewNV = 5272,
 	SpvDecorationPerTaskNV = 5273,
@@ -507,6 +525,8 @@ namespace SPIRV_Cross;
 	SpvDecorationPrefetchINTEL = 5902,
 	SpvDecorationStallEnableINTEL = 5905,
 	SpvDecorationFuseLoopsInFunctionINTEL = 5907,
+	SpvDecorationAliasScopeINTEL = 5914,
+	SpvDecorationNoAliasINTEL = 5915,
 	SpvDecorationBufferLocationINTEL = 5921,
 	SpvDecorationIOPipeStorageINTEL = 5944,
 	SpvDecorationFunctionFloatingPointModeINTEL = 6080,
@@ -606,6 +626,10 @@ namespace SPIRV_Cross;
 	SpvBuiltInFragmentSizeNV = 5292,
 	SpvBuiltInFragInvocationCountEXT = 5293,
 	SpvBuiltInInvocationsPerPixelNV = 5293,
+	SpvBuiltInPrimitivePointIndicesEXT = 5294,
+	SpvBuiltInPrimitiveLineIndicesEXT = 5295,
+	SpvBuiltInPrimitiveTriangleIndicesEXT = 5296,
+	SpvBuiltInCullPrimitiveEXT = 5299,
 	SpvBuiltInLaunchIdKHR = 5319,
 	SpvBuiltInLaunchIdNV = 5319,
 	SpvBuiltInLaunchSizeKHR = 5320,
@@ -639,6 +663,7 @@ namespace SPIRV_Cross;
 	SpvBuiltInSMCountNV = 5375,
 	SpvBuiltInWarpIDNV = 5376,
 	SpvBuiltInSMIDNV = 5377,
+	SpvBuiltInCullMaskKHR = 6021,
 	SpvBuiltInMax = 2147483647,
 }
 
@@ -775,6 +800,8 @@ namespace SPIRV_Cross;
 	SpvMemoryAccessMakePointerVisibleKHRShift = 4,
 	SpvMemoryAccessNonPrivatePointerShift = 5,
 	SpvMemoryAccessNonPrivatePointerKHRShift = 5,
+	SpvMemoryAccessAliasScopeINTELMaskShift = 16,
+	SpvMemoryAccessNoAliasINTELMaskShift = 17,
 	SpvMemoryAccessMax = 2147483647,
 }
 
@@ -790,6 +817,8 @@ namespace SPIRV_Cross;
 	SpvMemoryAccessMakePointerVisibleKHRMask = 16,
 	SpvMemoryAccessNonPrivatePointerMask = 32,
 	SpvMemoryAccessNonPrivatePointerKHRMask = 32,
+	SpvMemoryAccessAliasScopeINTELMaskMask = 65536,
+	SpvMemoryAccessNoAliasINTELMaskMask = 131072,
 }
 
 [AllowDuplicates, CRepr] public enum SpvScope
@@ -940,6 +969,9 @@ namespace SPIRV_Cross;
 	SpvCapabilityRayQueryKHR = 4472,
 	SpvCapabilityRayTraversalPrimitiveCullingKHR = 4478,
 	SpvCapabilityRayTracingKHR = 4479,
+	SpvCapabilityTextureSampleWeightedQCOM = 4484,
+	SpvCapabilityTextureBoxFilterQCOM = 4485,
+	SpvCapabilityTextureBlockMatchQCOM = 4486,
 	SpvCapabilityFloat16ImageAMD = 5008,
 	SpvCapabilityImageGatherBiasLodAMD = 5009,
 	SpvCapabilityFragmentMaskAMD = 5010,
@@ -957,6 +989,7 @@ namespace SPIRV_Cross;
 	SpvCapabilityFragmentFullyCoveredEXT = 5265,
 	SpvCapabilityMeshShadingNV = 5266,
 	SpvCapabilityImageFootprintNV = 5282,
+	SpvCapabilityMeshShadingEXT = 5283,
 	SpvCapabilityFragmentBarycentricKHR = 5284,
 	SpvCapabilityFragmentBarycentricNV = 5284,
 	SpvCapabilityComputeDerivativeGroupQuadsNV = 5288,
@@ -1037,6 +1070,7 @@ namespace SPIRV_Cross;
 	SpvCapabilityFPGAMemoryAccessesINTEL = 5898,
 	SpvCapabilityFPGAClusterAttributesINTEL = 5904,
 	SpvCapabilityLoopFuseINTEL = 5906,
+	SpvCapabilityMemoryAccessAliasingINTEL = 5910,
 	SpvCapabilityFPGABufferLocationINTEL = 5920,
 	SpvCapabilityArbitraryPrecisionFixedPointINTEL = 5922,
 	SpvCapabilityUSMStorageClassesINTEL = 5935,
@@ -1051,13 +1085,17 @@ namespace SPIRV_Cross;
 	SpvCapabilityDotProductInput4x8BitPackedKHR = 6018,
 	SpvCapabilityDotProduct = 6019,
 	SpvCapabilityDotProductKHR = 6019,
+	SpvCapabilityRayCullMaskKHR = 6020,
 	SpvCapabilityBitInstructions = 6025,
+	SpvCapabilityGroupNonUniformRotateKHR = 6026,
 	SpvCapabilityAtomicFloat32AddEXT = 6033,
 	SpvCapabilityAtomicFloat64AddEXT = 6034,
 	SpvCapabilityLongConstantCompositeINTEL = 6089,
 	SpvCapabilityOptNoneINTEL = 6094,
 	SpvCapabilityAtomicFloat16AddEXT = 6095,
 	SpvCapabilityDebugInfoModuleINTEL = 6114,
+	SpvCapabilitySplitBarrierINTEL = 6141,
+	SpvCapabilityGroupUniformArithmeticKHR = 6400,
 	SpvCapabilityMax = 2147483647,
 }
 
@@ -1526,6 +1564,7 @@ namespace SPIRV_Cross;
 	SpvOpSubgroupAllKHR = 4428,
 	SpvOpSubgroupAnyKHR = 4429,
 	SpvOpSubgroupAllEqualKHR = 4430,
+	SpvOpGroupNonUniformRotateKHR = 4431,
 	SpvOpSubgroupReadInvocationKHR = 4432,
 	SpvOpTraceRayKHR = 4445,
 	SpvOpExecuteCallableKHR = 4446,
@@ -1551,6 +1590,10 @@ namespace SPIRV_Cross;
 	SpvOpRayQueryConfirmIntersectionKHR = 4476,
 	SpvOpRayQueryProceedKHR = 4477,
 	SpvOpRayQueryGetIntersectionTypeKHR = 4479,
+	SpvOpImageSampleWeightedQCOM = 4480,
+	SpvOpImageBoxFilterQCOM = 4481,
+	SpvOpImageBlockMatchSSDQCOM = 4482,
+	SpvOpImageBlockMatchSADQCOM = 4483,
 	SpvOpGroupIAddNonUniformAMD = 5000,
 	SpvOpGroupFAddNonUniformAMD = 5001,
 	SpvOpGroupFMinNonUniformAMD = 5002,
@@ -1563,6 +1606,8 @@ namespace SPIRV_Cross;
 	SpvOpFragmentFetchAMD = 5012,
 	SpvOpReadClockKHR = 5056,
 	SpvOpImageSampleFootprintNV = 5283,
+	SpvOpEmitMeshTasksEXT = 5294,
+	SpvOpSetMeshOutputsEXT = 5295,
 	SpvOpGroupNonUniformPartitionNV = 5296,
 	SpvOpWritePackedPrimitiveIndices4x8NV = 5299,
 	SpvOpReportIntersectionKHR = 5334,
@@ -1792,6 +1837,9 @@ namespace SPIRV_Cross;
 	SpvOpArbitraryFloatPowRINTEL = 5881,
 	SpvOpArbitraryFloatPowNINTEL = 5882,
 	SpvOpLoopControlINTEL = 5887,
+	SpvOpAliasDomainDeclINTEL = 5911,
+	SpvOpAliasScopeDeclINTEL = 5912,
+	SpvOpAliasScopeListDeclINTEL = 5913,
 	SpvOpFixedSqrtINTEL = 5923,
 	SpvOpFixedRecipINTEL = 5924,
 	SpvOpFixedRsqrtINTEL = 5925,
@@ -1830,6 +1878,16 @@ namespace SPIRV_Cross;
 	SpvOpTypeStructContinuedINTEL = 6090,
 	SpvOpConstantCompositeContinuedINTEL = 6091,
 	SpvOpSpecConstantCompositeContinuedINTEL = 6092,
+	SpvOpControlBarrierArriveINTEL = 6142,
+	SpvOpControlBarrierWaitINTEL = 6143,
+	SpvOpGroupIMulKHR = 6401,
+	SpvOpGroupFMulKHR = 6402,
+	SpvOpGroupBitwiseAndKHR = 6403,
+	SpvOpGroupBitwiseOrKHR = 6404,
+	SpvOpGroupBitwiseXorKHR = 6405,
+	SpvOpGroupLogicalAndKHR = 6406,
+	SpvOpGroupLogicalOrKHR = 6407,
+	SpvOpGroupLogicalXorKHR = 6408,
 	SpvOpMax = 2147483647,
 }
 
@@ -1877,6 +1935,7 @@ namespace SPIRV_Cross;
 	SeparateSamplers = 11,
 	AccelerationStructure = 12,
 	RayQuery = 13,
+	ShaderRecordBuffer = 14,
 	IntMax = 2147483647,
 }
 
@@ -1928,7 +1987,7 @@ namespace SPIRV_Cross;
 	MaxInt = 2147483647,
 }
 
-[AllowDuplicates, CRepr] public enum spvc_msl_shader_input_format
+[AllowDuplicates, CRepr] public enum spvc_msl_shader_variable_format
 {
 	Other = 0,
 	Uint8 = 1,
@@ -1938,10 +1997,21 @@ namespace SPIRV_Cross;
 	SPVC_MSL_VERTEX_FORMAT_OTHER = Other,
 	SPVC_MSL_VERTEX_FORMAT_UINT8 = Uint8,
 	SPVC_MSL_VERTEX_FORMAT_UINT16 = Uint16,
-	IntMax = 2147483647,
+	SPVC_MSL_SHADER_INPUT_FORMAT_OTHER = Other,
+	SPVC_MSL_SHADER_INPUT_FORMAT_UINT8 = Uint8,
+	SPVC_MSL_SHADER_INPUT_FORMAT_UINT16 = Uint16,
+	SPVC_MSL_SHADER_INPUT_FORMAT_ANY16 = Any16,
+	SPVC_MSL_SHADER_INPUT_FORMAT_ANY32 = Any32,
+	SPVC_MSL_SHADER_INPUT_FORMAT_INT_MAX = 2147483647,
 }
 
-typealias spvc_msl_vertex_format = spvc_msl_shader_input_format;
+[AllowDuplicates, CRepr] public enum spvc_msl_shader_variable_rate
+{
+	PerVertex = 0,
+	PerPrimitive = 1,
+	PerPatch = 2,
+	IntMax = 2147483647,
+}
 
 [AllowDuplicates, CRepr] public enum spvc_msl_sampler_coord
 {
@@ -2134,6 +2204,17 @@ typealias spvc_msl_vertex_format = spvc_msl_shader_input_format;
 	MslIosSupportBaseVertexInstance = 134217804,
 	GlslOvrMultiviewViewCount = 33554509,
 	RelaxNanChecks = 16777294,
+	MslRawBufferTeseInput = 134217807,
+	MslShaderPatchInputBufferIndex = 134217808,
+	MslManualHelperInvocationUpdates = 134217809,
+	MslCheckDiscardedFragStores = 134217810,
+	GlslEnableRowMajorLoadWorkaround = 33554515,
+	MslArgumentBuffersTier = 134217812,
+	MslSampleDrefLodArrayAsGrad = 134217813,
+	MslReadwriteTextureFences = 134217814,
+	MslReplaceRecursiveInputs = 134217815,
+	MslAgxManualCubeGradFixup = 134217816,
+	MslForceFragmentWithSideEffectsExecution = 134217817,
 	IntMax = 2147483647,
 }
 

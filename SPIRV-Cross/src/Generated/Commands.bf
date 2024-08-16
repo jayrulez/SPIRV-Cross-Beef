@@ -14,10 +14,19 @@ public class SPIRV
 	public static extern void spvc_msl_vertex_attribute_init(spvc_msl_vertex_attribute* attr);
 
 	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_msl_shader_interface_var_init(spvc_msl_shader_interface_var* var);
+
+	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_msl_shader_input_init(spvc_msl_shader_input* input);
 
 	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_msl_shader_interface_var_init_2(spvc_msl_shader_interface_var_2* var);
+
+	[CallingConvention(.Stdcall), CLink]
 	public static extern void spvc_msl_resource_binding_init(spvc_msl_resource_binding* binding);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_msl_resource_binding_init_2(spvc_msl_resource_binding_2* binding);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern uint32 spvc_msl_get_aux_buffer_struct_version();
@@ -77,6 +86,12 @@ public class SPIRV
 	public static extern spvc_result spvc_compiler_require_extension(spvc_compiler compiler, char8* ext);
 
 	[CallingConvention(.Stdcall), CLink]
+	public static extern uint spvc_compiler_get_num_required_extensions(spvc_compiler compiler);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern char8* spvc_compiler_get_required_extension(spvc_compiler compiler, uint index);
+
+	[CallingConvention(.Stdcall), CLink]
 	public static extern spvc_result spvc_compiler_flatten_buffer_block(spvc_compiler compiler, uint32 id);
 
 	[CallingConvention(.Stdcall), CLink]
@@ -134,7 +149,19 @@ public class SPIRV
 	public static extern spvc_result spvc_compiler_msl_add_resource_binding(spvc_compiler compiler, spvc_msl_resource_binding* binding);
 
 	[CallingConvention(.Stdcall), CLink]
-	public static extern spvc_result spvc_compiler_msl_add_shader_input(spvc_compiler compiler, spvc_msl_shader_input* input);
+	public static extern spvc_result spvc_compiler_msl_add_resource_binding_2(spvc_compiler compiler, spvc_msl_resource_binding_2* binding);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern spvc_result spvc_compiler_msl_add_shader_input(spvc_compiler compiler, spvc_msl_shader_interface_var* input);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern spvc_result spvc_compiler_msl_add_shader_input_2(spvc_compiler compiler, spvc_msl_shader_interface_var_2* input);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern spvc_result spvc_compiler_msl_add_shader_output(spvc_compiler compiler, spvc_msl_shader_interface_var* output);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern spvc_result spvc_compiler_msl_add_shader_output_2(spvc_compiler compiler, spvc_msl_shader_interface_var_2* output);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern spvc_result spvc_compiler_msl_add_discrete_descriptor_set(spvc_compiler compiler, uint32 desc_set);
@@ -147,6 +174,9 @@ public class SPIRV
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern bool spvc_compiler_msl_is_shader_input_used(spvc_compiler compiler, uint32 location);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern bool spvc_compiler_msl_is_shader_output_used(spvc_compiler compiler, uint32 location);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern bool spvc_compiler_msl_is_resource_used(spvc_compiler compiler, SpvExecutionModel model, uint32 set, uint32 binding);
@@ -419,7 +449,46 @@ public class SPIRV
 	public static extern void spvc_constant_get_subconstants(spvc_constant constant, uint32* constituents, uint* count);
 
 	[CallingConvention(.Stdcall), CLink]
+	public static extern  spvc_constant_get_scalar_u64(spvc_constant constant, uint32 column, uint32 row);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern  spvc_constant_get_scalar_i64(spvc_constant constant, uint32 column, uint32 row);
+
+	[CallingConvention(.Stdcall), CLink]
 	public static extern uint32 spvc_constant_get_type(spvc_constant constant);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_fp16(spvc_constant constant, uint32 column, uint32 row, uint16 value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_fp32(spvc_constant constant, uint32 column, uint32 row, float value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_fp64(spvc_constant constant, uint32 column, uint32 row, double value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_u32(spvc_constant constant, uint32 column, uint32 row, uint32 value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_i32(spvc_constant constant, uint32 column, uint32 row, int32 value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_u64(spvc_constant constant, uint32 column, uint32 row,  value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_i64(spvc_constant constant, uint32 column, uint32 row,  value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_u16(spvc_constant constant, uint32 column, uint32 row, uint16 value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_i16(spvc_constant constant, uint32 column, uint32 row, int16 value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_u8(spvc_constant constant, uint32 column, uint32 row,  value);
+
+	[CallingConvention(.Stdcall), CLink]
+	public static extern void spvc_constant_set_scalar_i8(spvc_constant constant, uint32 column, uint32 row, char8 value);
 
 	[CallingConvention(.Stdcall), CLink]
 	public static extern bool spvc_compiler_get_binary_offset_for_decoration(spvc_compiler compiler, uint32 id, SpvDecoration decoration, uint32* word_offset);

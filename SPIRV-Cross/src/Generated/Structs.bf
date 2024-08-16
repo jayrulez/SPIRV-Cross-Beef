@@ -78,7 +78,7 @@ public struct spvc_msl_vertex_attribute
 }
 
 [CRepr]
-public struct spvc_msl_shader_input
+public struct spvc_msl_shader_interface_var
 {
 	public uint32 location;
 	public spvc_msl_vertex_format format;
@@ -87,11 +87,33 @@ public struct spvc_msl_shader_input
 }
 
 [CRepr]
+public struct spvc_msl_shader_interface_var_2
+{
+	public uint32 location;
+	public spvc_msl_shader_variable_format format;
+	public SpvBuiltIn builtin;
+	public uint32 vecsize;
+	public spvc_msl_shader_variable_rate rate;
+}
+
+[CRepr]
 public struct spvc_msl_resource_binding
 {
 	public SpvExecutionModel stage;
 	public uint32 desc_set;
 	public uint32 binding;
+	public uint32 msl_buffer;
+	public uint32 msl_texture;
+	public uint32 msl_sampler;
+}
+
+[CRepr]
+public struct spvc_msl_resource_binding_2
+{
+	public SpvExecutionModel stage;
+	public uint32 desc_set;
+	public uint32 binding;
+	public uint32 count;
 	public uint32 msl_buffer;
 	public uint32 msl_texture;
 	public uint32 msl_sampler;
